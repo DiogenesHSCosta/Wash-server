@@ -1,21 +1,33 @@
-var { graphql, buildSchema } = require("graphql")
+import Express from "express"
+import { buildSchema } from "graphql"
+import { graphqlHTTP } from "express-graphql"
 
-var schema = buildSchema(`
+
+const schema = buildSchema(`
     type Query{
-        msg: String
+        hello: String
     }
 `)
 
-var rootValue ={
-    msg(){
-        return "HELLO WORD"
+const root ={  
+    hello: ()=> {   
+        return "Hello Word!";
     }
 }
 
-graphql({
-    schema,
-    source: "{msg}",
-    rootValue
-}).then(response =>{
-    console.log(response)
+const app = Express()
+
+app.use("/", graphqlHTTP({
+    schema: schema,
+    rootValue: root,
+    graphiql: true,
+  })
+)
+
+console.log(root)
+
+
+const port = 4000
+app.listen(port, () =>{
+    console.log(`API rodando: http://localhost:${port}`)
 })
