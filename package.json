@@ -1,0 +1,24 @@
+{
+  "name": "backend-wash",
+  "version": "1.0.0",
+  "description": "API project from the app Wash Cycle",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiogenesHSCosta/Wash-server.git"
+  },
+  "author": "DiogenesHSCosta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DiogenesHSCosta/Wash-server/issues"
+  },
+  "homepage": "https://github.com/DiogenesHSCosta/Wash-server#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "graphql": "^15.3.0"
+  }
+}
