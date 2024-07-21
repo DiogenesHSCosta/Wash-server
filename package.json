@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/DiogenesHSCosta/Wash-server#readme",
   "dependencies": {
-    "express": "^4.19.2"
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
   }
 }
