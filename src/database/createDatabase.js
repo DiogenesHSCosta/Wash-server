@@ -76,3 +76,41 @@ ALTER TABLE LAVAGEM ADD FOREIGN KEY(id_usuario) REFERENCES USUARIO (id_usuario)
 ALTER TABLE USUARIO ADD FOREIGN KEY(codigo_plano) REFERENCES PLANO (codigo_planos)
 `
 
+const createTableEndereco = () =>{
+    db.run(ENDERECO_SCHEMAS, (erro) =>{
+        if(erro) console.log("Erro na criação da tabela 'USER'")
+    })
+}
+
+const createTableEspecialista = () =>{
+    db.run(ESPECIALISTA_SCHEMAS, (erro) =>{
+        if(erro) console.log("Erro na criação da tabela 'USER'")
+    })
+}
+
+const createTableLavagem = () =>{
+    db.run(LAVAGEM_SCHEMAS, (erro) =>{
+        if(erro) console.log("Erro na criação da tabela 'USER'")
+    })
+}
+
+const createTableUsuario = () =>{
+    db.run(USUARIO_SCHEMAS, (erro) =>{
+        if(erro) console.log("Erro na criação da tabela 'USER'")
+    })
+}
+
+const createTablePlano = () =>{
+    db.run(PLANO_SCHEMAS, (erro) =>{
+        if(erro) console.log("Erro na criação da tabela 'USER'")
+    })
+}
+
+db.serialize(()=>{
+    enableForeignKey()
+    createTableEndereco()
+    createTableEspecialista()
+    createTableLavagem()
+    createTableUsuario()
+    createTablePlano()
+})
