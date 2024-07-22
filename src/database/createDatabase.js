@@ -36,20 +36,17 @@ CREATE TABLE ESPECIALISTA (
     senha VARCHAR(50),
     num_endereco INT,
     codigo_endereco VARCHAR(10),
+
     FOREIGN KEY(codigo_endereco) REFERENCES ENDERECO (codigo_endereco)
 )`
 
-const LAVAGEM_SCHEMAS =`
-CREATE TABLE LAVAGEM (
-    pecas INT,
-    data CHAR(10),
-    status VARCHAR(10),
-    codigo_lavagem VARCHAR(10) PRIMARY KEY,
-    id_especialista VARCHAR(10),
-    id_usuario VARCHAR(10),
-    FOREIGN KEY(id_especialista) REFERENCES ESPECIALISTA (id_especialista)
-)`
-
+const PLANO_SCHEMAS = `
+CREATE TABLE PLANO (
+    precos FLOAT,
+    codigo_planos VARCHAR(10) PRIMARY KEY,
+    qtd_pecas INT
+)
+`
 const USUARIO_SCHEMAS =`
 CREATE TABLE USUARIO (
     pecas_disponiveis INT,
@@ -60,51 +57,61 @@ CREATE TABLE USUARIO (
     telefone CHAR(9),
     id_usuario VARCHAR(10) PRIMARY KEY,
     num_endereco INT,
+
     codigo_endereco VARCHAR(10),
     codigo_plano VARCHAR(10),
+
     FOREIGN KEY(codigo_endereco) REFERENCES ENDERECO (codigo_endereco)
+    FOREIGN KEY(codigo_plano) REFERENCES PLANO (codigo_planos)
 )`
 
-const PLANO_SCHEMAS = `
-CREATE TABLE PLANO (
-precos FLOAT,
-codigo_planos VARCHAR(10) PRIMARY KEY,
-qtd_pecas INT
-)
+const LAVAGEM_SCHEMAS =`
+CREATE TABLE LAVAGEM (
+    pecas INT,
+    data CHAR(10),
+    status VARCHAR(10),
+    codigo_lavagem VARCHAR(10) PRIMARY KEY,
 
-ALTER TABLE LAVAGEM ADD FOREIGN KEY(id_usuario) REFERENCES USUARIO (id_usuario)
-ALTER TABLE USUARIO ADD FOREIGN KEY(codigo_plano) REFERENCES PLANO (codigo_planos)
-`
+    id_especialista VARCHAR(10),
+    id_usuario VARCHAR(10),
+
+    FOREIGN KEY(id_especialista) REFERENCES ESPECIALISTA (id_especialista)
+    FOREIGN KEY(id_usuario) REFERENCES USUARIO (id_usuario)
+)`
+
+
+
 
 const createTableEndereco = () =>{
     db.run(ENDERECO_SCHEMAS, (erro) =>{
-        if(erro) console.log("Erro na criação da tabela 'USER'")
+        if(erro) console.log("Erro na criação da tabela 'ENDERECO'")
     })
 }
 
 const createTableEspecialista = () =>{
     db.run(ESPECIALISTA_SCHEMAS, (erro) =>{
-        if(erro) console.log("Erro na criação da tabela 'USER'")
+        if(erro) console.log("Erro na criação da tabela 'ESPECIALISTA'")
     })
 }
 
 const createTableLavagem = () =>{
     db.run(LAVAGEM_SCHEMAS, (erro) =>{
-        if(erro) console.log("Erro na criação da tabela 'USER'")
+        if(erro) console.log("Erro na criação da tabela 'LAVAGEM'")
     })
 }
 
 const createTableUsuario = () =>{
     db.run(USUARIO_SCHEMAS, (erro) =>{
-        if(erro) console.log("Erro na criação da tabela 'USER'")
+        if(erro) console.log("Erro na criação da tabela 'USUARIO'")
     })
 }
 
 const createTablePlano = () =>{
     db.run(PLANO_SCHEMAS, (erro) =>{
-        if(erro) console.log("Erro na criação da tabela 'USER'")
+        if(erro) console.log("Erro na criação da tabela 'PLANO'")
     })
 }
+
 
 db.serialize(()=>{
     enableForeignKey()
