@@ -35,7 +35,7 @@ CREATE TABLE ESPECIALISTA (
     id_especialista VARCHAR(10) PRIMARY KEY,
     senha VARCHAR(50),
     num_endereco INT,
-    codigo_endereco VARCHAR(10),
+    codigo_endereco VARCHAR(10) null,
 
     FOREIGN KEY(codigo_endereco) REFERENCES ENDERECO (codigo_endereco)
 )`
@@ -69,7 +69,7 @@ const LAVAGEM_SCHEMAS =`
 CREATE TABLE LAVAGEM (
     pecas INT,
     data CHAR(10),
-    status VARCHAR(10),
+    status VARCHAR(13) DEFAULT "em andamento",
     codigo_lavagem VARCHAR(10) PRIMARY KEY,
 
     id_especialista VARCHAR(10),
